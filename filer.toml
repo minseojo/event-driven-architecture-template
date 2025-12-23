@@ -1,0 +1,11 @@
+[master.default]
+# 데이터 영속성을 위한 복제 설정
+# 000 = 1 replica (단일 복제본, 테스트용)
+# 001 = 2 replicas (권장)
+# 010 = 같은 랙에 2 replicas
+# 011 = 다른 랙에 3 replicas (프로덕션 권장)
+defaultReplicaPlacement = "000"
+
+# LevelDB를 사용하여 메타데이터 영속성 보장
+[leveldb2]
+enabled = true

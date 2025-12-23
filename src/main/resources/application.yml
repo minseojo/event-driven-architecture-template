@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: template-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/template_db
+    username: user
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none  # init.sql로 스키마 생성, validate 대신 none 사용
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    open-in-view: false
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+  
+  # 파일 업로드 크기 제한 설정 (500MB)
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 500MB
+      max-request-size: 500MB
+      file-size-threshold: 10MB
+
+# SeaweedFS Filer 설정
+seaweedfs:
+  filer:
+    url: http://localhost:8888
+    base-path: /files
+
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  # HTTP 요청 크기 제한 (500MB)
+  max-http-header-size: 16KB
+
